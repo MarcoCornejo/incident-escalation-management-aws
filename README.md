@@ -17,12 +17,12 @@ The repository is organized as follows:
 
 To use this system, you need an AWS account and the AWS CLI installed and configured on your machine.
 
-1. Clone this repository: `git clone https://github.com/YourUsername/incident-management-aws.git`
+1. Clone this repository: `git clone https://github.com/MarcoCornejo/incident-escalation-management-aws.git`
 2. Navigate to each Lambda function directory and deploy the function to your AWS account.
 3. Create a state machine in AWS Step Functions using the configuration in `state_machine.json`.
 4. Configure your CloudWatch alarms to trigger the state machine whenever their state changes to ALARM.
 
-For more information, see the comments in each script and the accompanying blog post [here](https://medium.com/p/4c5afb3a0628).
+For more information, see the comments in each script and the accompanying blog post [here](https://medium.com/@MarcoCornejo/keeping-calm-in-the-eye-of-the-storm-establishing-sms-escalation-protocols-for-incident-management-4c5afb3a0628).
 
 # Environment Variables
 
