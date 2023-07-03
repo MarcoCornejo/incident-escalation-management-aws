@@ -1,0 +1,40 @@
+{
+    "Comment": "Incident Management State Machine",
+    "StartAt": "CheckMaintenanceWindow",
+    "States": {
+        "CheckMaintenanceWindow": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:Check_Maintenance_Window",
+            "Next": "IsMaintenanceWindowActive"
+        },
+        "IsMaintenanceWindowActive": {
+            "Type": "Choice",
+            "Choices": [
+                {
+                    "Variable": "$",
+                    "BooleanEquals": true,
+                    "Next": "End"
+                }
+            ],
+            "Default": "EscalationLevel1"
+        },
+        "EscalationLevel1": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:Escalation_Level_1",
+            "Next": "Wait30Minutes"
+        },
+        "Wait30Minutes": {
+            "Type": "Wait",
+            "Seconds": 1800,
+            "Next": "EscalationLevel2"
+        },
+        "EscalationLevel2": {
+            "Type": "Task",
+            "Resource": "arn:aws:lambda:REGION:ACCOUNT_ID:function:Escalation_Level_2",
+            "End": true
+        },
+        "End": {
+            "Type": "Succeed"
+        }
+    }
+}
